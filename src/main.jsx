@@ -6,13 +6,13 @@ import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./styles/theme.js";
 
 export const Root = () => {
-  const [mode, setMode] = useState("light");
+  const [mode, setMode] = useState("system");
   const muiTheme = useMemo(() => theme(mode), [mode]);
 
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
-      <App mode={mode} setMode={setMode} />
+      <App setMode={setMode} />
     </ThemeProvider>
   );
 };

@@ -2,37 +2,57 @@
 import reactLogo from "./assets/images/react.svg";
 import viteLogo from "/vite.svg";
 import "./styles/App.css";
-import Button from "@mui/material/Button";
+import {
+  ButtonGroup,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  Radio,
+  RadioGroup,
+} from "@mui/material";
 import {
   AccessAlarm,
   ThreeDRotation,
   DarkMode,
   LightMode,
+  SettingsBrightness,
 } from "@mui/icons-material";
 import { Box } from "@mui/material";
 
-function App({ mode, setMode }) {
+function App({ setMode }) {
+  const modes = [
+    { key: "light", label: "Light", icon: <LightMode /> },
+    { key: "dark", label: "Dark", icon: <DarkMode /> },
+    { key: "system", label: "System", icon: <SettingsBrightness /> },
+  ];
   return (
     <>
       <Box
         sx={{
-          p: 2,
-          border: `1px solid ${mode === "light" ? "black" : "white"}`,
-          width: "65%",
-          margin: "20px auto",
+          // New
+          display: "flex",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          bgcolor: "background.default",
+          // color: "text.primary",
+          borderRadius: 1,
+          p: 3,
+          minHeight: "56px",
+          //
+          border: (theme) =>
+            `1px solid ${theme.palette.mode === "light" ? "black" : "white"}`,
         }}
       >
         {/* === CHANGE MODE === */}
-        <Button
-          variant="contained"
-          onClick={() => {
-            setMode(mode === "light" ? "dark" : "light");
-          }}
-        >
-          {mode === "light" ? <DarkMode /> : <LightMode />}
-          &nbsp;
-          {mode === "light" ? "Dark Mode" : "Light Mode"}
-        </Button>
+        <ButtonGroup variant="outlined" size="larger">
+          {modes.map((m) => (
+            <Button key={m.key} onClick={() => setMode(m.key)}>
+              {m.icon}&nbsp; {m.label}
+            </Button>
+          ))}
+        </ButtonGroup>
       </Box>
       <div>
         <a href="https://vite.dev" target="_blank">

@@ -1,10 +1,13 @@
-import { createTheme, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material";
 
-const theme = (mode) =>
-  createTheme({
+const theme = (mode) => {
+  const systemMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+  return createTheme({
     palette: {
-      mode,
+      mode: mode === "system" ? systemMode : mode,
     },
   });
-
+};
 export default theme;
