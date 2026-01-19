@@ -1,16 +1,8 @@
-// import { useState } from "react";
 import reactLogo from "./assets/images/react.svg";
 import viteLogo from "/vite.svg";
 import "./styles/App.css";
-import {
-  ButtonGroup,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
+
+import { ButtonGroup, Button, Box } from "@mui/material";
 import {
   AccessAlarm,
   ThreeDRotation,
@@ -18,14 +10,17 @@ import {
   LightMode,
   SettingsBrightness,
 } from "@mui/icons-material";
-import { Box } from "@mui/material";
+import { useColorScheme } from "@mui/material/styles";
 
-function App({ setMode }) {
+function App() {
+  const { mode, setMode } = useColorScheme();
+
   const modes = [
     { key: "light", label: "Light", icon: <LightMode /> },
     { key: "dark", label: "Dark", icon: <DarkMode /> },
     { key: "system", label: "System", icon: <SettingsBrightness /> },
   ];
+
   return (
     <>
       <Box
@@ -41,15 +36,19 @@ function App({ setMode }) {
           p: 3,
           minHeight: "56px",
           //
-          border: (theme) =>
-            `1px solid ${theme.palette.mode === "light" ? "black" : "white"}`,
+          border: () => `1px solid ${mode === "dark" ? "white" : "black"}`,
         }}
       >
         {/* === CHANGE MODE === */}
-        <ButtonGroup variant="outlined" size="larger">
+        <ButtonGroup variant="outlined" size="large">
           {modes.map((m) => (
-            <Button key={m.key} onClick={() => setMode(m.key)}>
-              {m.icon}&nbsp; {m.label}
+            <Button
+              key={m.key}
+              onClick={() => setMode(m.key)}
+              variant={mode === m.key ? "contained" : "outlined"}
+              startIcon={m.icon}
+            >
+              {m.label}
             </Button>
           ))}
         </ButtonGroup>

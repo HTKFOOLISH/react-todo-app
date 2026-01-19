@@ -1,24 +1,15 @@
-import { StrictMode, useMemo, useState } from "react";
+import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { ThemeProvider } from "@mui/material/styles";
 import App from "./App.jsx";
-import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 import theme from "./styles/theme.js";
-
-export const Root = () => {
-  const [mode, setMode] = useState("system");
-  const muiTheme = useMemo(() => theme(mode), [mode]);
-
-  return (
-    <ThemeProvider theme={muiTheme}>
-      <CssBaseline />
-      <App setMode={setMode} />
-    </ThemeProvider>
-  );
-};
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Root />
+    <ThemeProvider theme={theme} defaultMode="system">
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
   </StrictMode>
 );
