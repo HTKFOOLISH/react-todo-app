@@ -10,49 +10,13 @@ import {
   LightMode,
   SettingsBrightness,
 } from "@mui/icons-material";
-import { useColorScheme } from "@mui/material/styles";
+import ThemeModeToggle from "./components/ThemeModeToggle";
 
 function App() {
-  const { mode, setMode } = useColorScheme();
-
-  const modes = [
-    { key: "light", label: "Light", icon: <LightMode /> },
-    { key: "dark", label: "Dark", icon: <DarkMode /> },
-    { key: "system", label: "System", icon: <SettingsBrightness /> },
-  ];
-
   return (
     <>
-      <Box
-        sx={{
-          // New
-          display: "flex",
-          width: "100%",
-          alignItems: "center",
-          justifyContent: "center",
-          bgcolor: "background.default",
-          // color: "text.primary",
-          borderRadius: 1,
-          p: 3,
-          minHeight: "56px",
-          //
-          border: () => `1px solid ${mode === "dark" ? "white" : "black"}`,
-        }}
-      >
-        {/* === CHANGE MODE === */}
-        <ButtonGroup variant="outlined" size="large">
-          {modes.map((m) => (
-            <Button
-              key={m.key}
-              onClick={() => setMode(m.key)}
-              variant={mode === m.key ? "contained" : "outlined"}
-              startIcon={m.icon}
-            >
-              {m.label}
-            </Button>
-          ))}
-        </ButtonGroup>
-      </Box>
+      {/* ----- MODE TOGGLE ----- */}
+      <ThemeModeToggle />
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />

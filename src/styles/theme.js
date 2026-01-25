@@ -1,3 +1,6 @@
+// theme.js: MUI theme => define colors for interface
+// nơi định nghĩa các màu cho giao diện (sử dụng MUI)
+
 import { createTheme } from "@mui/material";
 
 const theme = createTheme({
