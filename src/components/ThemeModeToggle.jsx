@@ -45,8 +45,8 @@ const ThemeModeToggle = () => {
               <Box
                 sx={{
                   display: {
-                    xs: "none",
-                    sm: "flex",
+                    xs: "none", //      hidden on extra-small screens (mobile - xs screens)
+                    sm: "flex", //    shown on small screens and up (tablet - sm screens, desktop - md, lg, xl)
                   },
                 }}
               >
