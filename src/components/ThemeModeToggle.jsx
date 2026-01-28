@@ -3,15 +3,15 @@
 
 import { LightMode, DarkMode, SettingsBrightness } from "@mui/icons-material";
 import useThemeMode from "../hooks/useThemeMode";
-import { Box, ButtonGroup, Button } from "@mui/material";
+import { Box, ButtonGroup, Button, Tooltip } from "@mui/material";
 
 const ThemeModeToggle = () => {
   const { mode, setMode } = useThemeMode();
 
   const modes = [
-    { key: "light", label: "Light", icon: <LightMode /> },
-    { key: "dark", label: "Dark", icon: <DarkMode /> },
-    { key: "system", label: "System", icon: <SettingsBrightness /> },
+    { key: "light", label: "Light Mode", icon: <LightMode /> },
+    { key: "dark", label: "Dark Mode", icon: <DarkMode /> },
+    { key: "system", label: "System Mode", icon: <SettingsBrightness /> },
   ];
 
   return (
@@ -35,14 +35,25 @@ const ThemeModeToggle = () => {
       {/* === CHANGE MODE === */}
       <ButtonGroup variant="outlined" size="large">
         {modes.map((m) => (
-          <Button
-            key={m.key}
-            onClick={() => setMode(m.key)}
-            variant={mode === m.key ? "contained" : "outlined"}
-            startIcon={m.icon}
-          >
-            {m.label}
-          </Button>
+          <Tooltip title={m.label} key={m.key}>
+            <Button
+              onClick={() => setMode(m.key)}
+              variant={mode === m.key ? "contained" : "outlined"}
+              startIcon={m.icon}
+            >
+              {/* Label chỉ hiện từ md trở lên */}
+              <Box
+                sx={{
+                  display: {
+                    xs: "none",
+                    sm: "flex",
+                  },
+                }}
+              >
+                {m.label}
+              </Box>
+            </Button>
+          </Tooltip>
         ))}
       </ButtonGroup>
     </Box>

@@ -2,14 +2,8 @@ import reactLogo from "./assets/images/react.svg";
 import viteLogo from "/vite.svg";
 import "./styles/App.css";
 
-import { ButtonGroup, Button, Box } from "@mui/material";
-import {
-  AccessAlarm,
-  ThreeDRotation,
-  DarkMode,
-  LightMode,
-  SettingsBrightness,
-} from "@mui/icons-material";
+import { Button } from "@mui/material";
+import { AccessAlarm, ThreeDRotation } from "@mui/icons-material";
 import ThemeModeToggle from "./components/ThemeModeToggle";
 
 function App() {
